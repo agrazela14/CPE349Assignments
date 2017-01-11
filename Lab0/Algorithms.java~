@@ -1,0 +1,22 @@
+public class Algorithms {
+
+public static void linearAlgorithm(long N) {
+    
+}
+
+public static void quadraticAlgorithm(long N) {
+
+}
+
+public static void cubicAlgorithm(long N) {
+
+}
+
+public static void logarithmicAlgorithm(long N) {
+
+}
+
+public static void NlogNAlgorithm(long N) {
+
+}
+
