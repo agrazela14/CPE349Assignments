@@ -4,27 +4,30 @@ public class SortTest {
 
     public static final int ARRLEN = 15;
 
-    static int main(String args[]) {
-        ArrayList<int> ControlArray = new ArrayList(ARRLEN);
-        ArrayList<int> SortArray;
+    public static void main(String args[]) {
         Random rnd = new Random();
-        int[] arr = new int[ARRLEN];
+        int[] SelectionArr = new int[ARRLEN];
+        int[] MergeArr = new int[ARRLEN];
+        int[] QuickArr = new int[ARRLEN];
+        int[] ControlArr = new int[ARRLEN];
         System.out.println("The Random Numbers are");
         
-
         for (int i = 0; i < ARRLEN; i++) {
             int rndNum = rnd.nextInt();
-            arr[i] = rndNum;
-            ControlArray.add(rndNum);
+            SelectionArr[i] = rndNum;
+            MergeArr[i] = rndNum;
+            QuickArr[i] = rndNum;
+            ControlArr[i] = rndNum;
             System.out.println(rndNum);
         }
-        selectionSort(arr, ARRLEN);
-        SortArray = new ArrayList(arr);
-        if (SortArray.equals(ControlArray.sort())) {
-            System.out.println("Hurray Selection Sort Worked!");
-        }
-        else {
-            System.out.println("Selection Sort DIDN'T Work!");
+        Arrays.sort(ControlArr); 
+        Sorts.selectionSort(SelectionArr, ARRLEN);
+        Sorts.mergeSort(MergeArr, ARRLEN);
+        Sorts.quickSort(QuickArr, ARRLEN);
+        System.out.println("Control SelectionSort MergeSort QuickSort");
+
+        for (int i = 0; i < ARRLEN; i++) {
+            System.out.println(ControlArr[i] + " " + SelectionArr[i] + " " + MergeArr[i] + " " + QuickArr[i]);
         }
     }
 }
