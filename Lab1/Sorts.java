@@ -28,7 +28,7 @@ public class Sorts {
     }
 
     private static void mergeSortedHalves(int[] arr, int left, int middle, int right) {
-        int[right - left + 1] temp;
+        int[] temp = new int[right - left + 1];
         int index1 = left;
         int index2 = middle + 1;
         int index = 0;
