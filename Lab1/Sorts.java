@@ -118,11 +118,19 @@ public class Sorts {
                 pivot = firstVal;
                 pivotIndex = first;
             }
+            else if (lastVal < pivot) {
+                pivot = lastVal;
+                pivotIndex = last;
+            }
         }
         else {
             if (lastVal > pivot) {
                 pivot = lastVal;
                 pivotIndex = last;
+            }
+            else if (firstVal < pivot) {
+                pivot = firstVal;
+                pivotIndex = first;
             }
         }
 
@@ -137,24 +145,26 @@ public class Sorts {
         int indexR = last - 1; 
         int pivotVal = arr[last];
         int temp;
-      
-        while (arr[indexL] < pivotVal) {
-            indexL++;
-        }
+        
+        while (indexL < indexR) {
+            while (arr[indexL] < pivotVal) {
+                indexL++;
+            }
 
-        while ((arr[indexR] > pivotVal) && (indexR > indexL)) {
-            indexR--;
-        }
+            while ((arr[indexR] > pivotVal) && (indexR > indexL)) {
+                indexR--;
+            }
 
-        if (indexL < indexR) {
-            temp = arr[indexL]; 
-            arr[indexL] = arr[indexR];
-            arr[indexR] = temp;
-        }
-        else {
-            temp = arr[indexL]; 
-            arr[indexL] = pivotVal;
-            arr[last] = temp;
+            if (indexL < indexR) {
+                temp = arr[indexL]; 
+                arr[indexL] = arr[indexR];
+                arr[indexR] = temp;
+            }
+            else {
+                temp = arr[indexL]; 
+                arr[indexL] = pivotVal;
+                arr[last] = temp;
+            }
         }
         return indexL;
     }
