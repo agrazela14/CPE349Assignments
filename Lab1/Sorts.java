@@ -111,10 +111,26 @@ public class Sorts {
     }
 
     private static int splitList(int[] arr, int first, int last) {
-        int indexL = first; 
-        int indexR = last - 1; 
-        int pivotVal = arr[last];
+        int indexL     = first; 
+        //int indexR     = last - 1; 
+        int pivotIndex = last;
+        int pivotVal   = arr[last];
         int temp;
+
+        while ((indexL < pivotIndex) && (pivotIndex >= 1)) {
+            if (arr[indexL] > pivotVal) {
+                //Swap the offending value with 1 left of pivot
+                temp = arr[indexL];
+                arr[indexL] = arr[pivotIndex - 1];
+                //Now swap pivot with that
+                arr[pivotIndex - 1] = pivotVal;
+                arr[pivotIndex] = temp;
+                pivotIndex--;
+            }
+            else {
+                indexL++;
+            }
+        }
 
         /*
         if (indexL == indexR) {
@@ -125,7 +141,7 @@ public class Sorts {
             }
         }
         */
-
+        /*
         while (indexL < indexR) {
             while (arr[indexL] < pivotVal) {
                 indexL++;
@@ -146,7 +162,8 @@ public class Sorts {
                 arr[last] = temp;
             }
         }
-        return indexL;
+        */
+        return pivotIndex;
     }
 }
 
