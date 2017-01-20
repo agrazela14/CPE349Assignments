@@ -75,6 +75,8 @@ public class Sorts {
     private static void setPivotToEnd(int[] arr, int first, int last) {
         //int firstVal = arr[first];
         //int lastVal  = arr[last];
+        int lowestIndex = first;
+        int largestIndex = last;
         int temp;
       
         int pivotIndex = (first + last) / 2;
@@ -83,20 +85,30 @@ public class Sorts {
         //Determine pivot and it's index
         if (arr[first] < arr[last]) {
             if (arr[first] > pivot) {
+                lowestIndex = pivotIndex;
+                largestIndex = last;
                 pivot = arr[first];
                 pivotIndex = first;
             }
             else if (arr[last] < pivot) {
+                lowestIndex = first;
+                largestIndex = pivotIndex;
                 pivot = arr[last];
                 pivotIndex = last;
             }
         }
         else {
-            if (arr[last] < pivot) {
+            lowestIndex = last;
+            largestIndex = first;
+            if (arr[last] > pivot) {
+                lowestIndex = pivotIndex;
+                largestIndex = first;
                 pivot = arr[last];
                 pivotIndex = last;
             }
-            else if (arr[first] > pivot) {
+            else if (arr[first] < pivot) {
+                lowestIndex = last;
+                largestIndex = pivotIndex;
                 pivot = arr[first];
                 pivotIndex = first;
             }
@@ -106,6 +118,17 @@ public class Sorts {
         temp = pivot;
         arr[pivotIndex] = arr[last];
         arr[last] = temp;
+
+        //Switch Lowest to first index
+        temp = arr[lowestIndex];
+        arr[lowestIndex] = arr[first];
+        arr[first] = temp;
+
+        //Switch Largest to middle index
+        temp = arr[largestIndex];
+        arr[largestIndex] = arr[(first + last) / 2];
+        arr[(first + last) / 2] = temp;
+
     }
 
     private static int splitList(int[] arr, int first, int last) {
@@ -116,7 +139,7 @@ public class Sorts {
         int temp;
 
         while ((indexL < pivotIndex) && (pivotIndex >= 1)) {
-            if (arr[indexL] > arr[last]) {
+            if (arr[indexL] > arr[pivotIndex]) {
                 //Swap the offending value with 1 left of pivot
                 temp = arr[indexL];
                 arr[indexL] = arr[pivotIndex - 1];
