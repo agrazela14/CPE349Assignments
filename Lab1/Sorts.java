@@ -73,40 +73,38 @@ public class Sorts {
     }
 
     private static void setPivotToEnd(int[] arr, int first, int last) {
-        int middle = (first + last) / 2;
-        int firstVal = arr[first];
-        int lastVal  = arr[last];
-        int midVal   = arr[middle];
+        //int firstVal = arr[first];
+        //int lastVal  = arr[last];
         int temp;
       
-        int pivot = midVal;
-        int pivotIndex = middle;
+        int pivotIndex = (first + last) / 2;
+        int pivot = arr[pivotIndex];
 
         //Determine pivot and it's index
-        if (firstVal < lastVal) {
-            if (firstVal > pivot) {
-                pivot = firstVal;
+        if (arr[first] < arr[last]) {
+            if (arr[first] > pivot) {
+                pivot = arr[first];
                 pivotIndex = first;
             }
-            else if (lastVal < pivot) {
-                pivot = lastVal;
+            else if (arr[last] < pivot) {
+                pivot = arr[last];
                 pivotIndex = last;
             }
         }
         else {
-            if (lastVal < pivot) {
-                pivot = lastVal;
+            if (arr[last] < pivot) {
+                pivot = arr[last];
                 pivotIndex = last;
             }
-            else if (firstVal > pivot) {
-                pivot = firstVal;
+            else if (arr[first] > pivot) {
+                pivot = arr[first];
                 pivotIndex = first;
             }
         }
 
         //Switch pivot to the end
         temp = pivot;
-        arr[pivotIndex] = lastVal;
+        arr[pivotIndex] = arr[last];
         arr[last] = temp;
     }
 
@@ -114,16 +112,16 @@ public class Sorts {
         int indexL     = first; 
         //int indexR     = last - 1; 
         int pivotIndex = last;
-        int pivotVal   = arr[last];
+        //int pivotVal   = arr[last];
         int temp;
 
         while ((indexL < pivotIndex) && (pivotIndex >= 1)) {
-            if (arr[indexL] > pivotVal) {
+            if (arr[indexL] > arr[last]) {
                 //Swap the offending value with 1 left of pivot
                 temp = arr[indexL];
                 arr[indexL] = arr[pivotIndex - 1];
                 //Now swap pivot with that
-                arr[pivotIndex - 1] = pivotVal;
+                arr[pivotIndex - 1] = arr[last];
                 arr[pivotIndex] = temp;
                 pivotIndex--;
             }
