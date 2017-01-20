@@ -2,7 +2,7 @@ import java.util.*;
 
 public class SortTest {
 
-    public static final int ARRLEN = 15;
+    public static final int ARRLEN = 160000;
 
     public static void main(String args[]) {
         Random rnd = new Random();
@@ -21,8 +21,8 @@ public class SortTest {
             System.out.println(rndNum);
         }
         Arrays.sort(ControlArr); 
-        Sorts.selectionSort(SelectionArr, ARRLEN);
-        Sorts.mergeSort(MergeArr, ARRLEN);
+        //Sorts.selectionSort(SelectionArr, ARRLEN);
+        //Sorts.mergeSort(MergeArr, ARRLEN);
         Sorts.quickSort(QuickArr, ARRLEN);
         System.out.println("Control SelectionSort MergeSort QuickSort");
 
