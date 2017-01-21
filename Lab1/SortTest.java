@@ -21,8 +21,8 @@ public class SortTest {
             System.out.println(rndNum);
         }
         Arrays.sort(ControlArr); 
-        //Sorts.selectionSort(SelectionArr, ARRLEN);
-        //Sorts.mergeSort(MergeArr, ARRLEN);
+        Sorts.selectionSort(SelectionArr, ARRLEN);
+        Sorts.mergeSort(MergeArr, ARRLEN);
         Sorts.quickSort(QuickArr, ARRLEN);
         System.out.println("Control SelectionSort MergeSort QuickSort");
 

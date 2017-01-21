@@ -67,8 +67,8 @@ public class Sorts {
         if (first < last) {
             setPivotToEnd(arr, first, last);
             int pivotIndex = splitList(arr, first, last);
-            quickSort(arr, first, pivotIndex);
             quickSort(arr, pivotIndex + 1, last);
+            quickSort(arr, first, pivotIndex);
         }
     }
 
@@ -128,11 +128,32 @@ public class Sorts {
 
     private static int splitList(int[] arr, int first, int last) {
         int indexL     = first; 
-        //int indexR     = last - 1; 
+        int indexR     = last - 1; 
         int pivotIndex = last;
-        //int pivotVal   = arr[last];
+        int pivotVal   = arr[last];
         int temp;
+        
+        while (indexL < indexR) {
+            while (arr[indexL] < pivotVal) {
+                indexL++;
+            }
+            while ((arr[indexR] > pivotVal) && (indexR > indexL)) {
+                indexR--;
+            }
+            if (indexL < indexR) {
+                temp = arr[indexL];
+                arr[indexL] = arr[indexR];
+                arr[indexR] = temp;
+            }
+        }
+        temp = arr[indexL];
+        arr[indexL] = pivotVal;
+        arr[last] = temp;
+        return indexL;
+        
 
+        /*
+        // This was the non-standard version that I was trying for. For some reason this crap doesn't work
         while ((indexL < pivotIndex) && (pivotIndex >= 1)) {
             if (arr[indexL] > arr[pivotIndex]) {
                 //Swap the offending value with 1 left of pivot
@@ -147,39 +168,8 @@ public class Sorts {
                 indexL++;
             }
         }
-
-        /*
-        if (indexL == indexR) {
-            if (arr[indexL] > arr[indexR]) {
-                temp = arr[indexL];
-                arr[indexL] = arr[indexR];
-                arr[indexR] = temp;
-            }
-        }
-        */
-        /*
-        while (indexL < indexR) {
-            while (arr[indexL] < pivotVal) {
-                indexL++;
-            }
-
-            while ((arr[indexR] > pivotVal) && (indexR > indexL)) {
-                indexR--;
-            }
-
-            if (indexL < indexR) {
-                temp = arr[indexL]; 
-                arr[indexL] = arr[indexR];
-                arr[indexR] = temp;
-            }
-            else {
-                temp = arr[indexL]; 
-                arr[indexL] = pivotVal;
-                arr[last] = temp;
-            }
-        }
-        */
         return pivotIndex;
+        */
     }
 }
 
