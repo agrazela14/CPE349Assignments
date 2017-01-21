@@ -85,30 +85,20 @@ public class Sorts {
         //Determine pivot and it's index
         if (arr[first] < arr[last]) {
             if (arr[first] > pivot) {
-                //lowestIndex = pivotIndex;
-                //largestIndex = last;
                 pivot = arr[first];
                 pivotIndex = first;
             }
-            if (arr[last] < pivot) {
-                //lowestIndex = first;
-                //largestIndex = pivotIndex;
+            else if (arr[last] < pivot) {
                 pivot = arr[last];
                 pivotIndex = last;
             }
         }
         else {
-            //lowestIndex = last;
-            //largestIndex = first;
             if (arr[last] > pivot) {
-                //lowestIndex = pivotIndex;
-                //largestIndex = first;
                 pivot = arr[last];
                 pivotIndex = last;
             }
-            if (arr[first] < pivot) {
-                //lowestIndex = last;
-                //largestIndex = pivotIndex;
+            else if (arr[first] < pivot) {
                 pivot = arr[first];
                 pivotIndex = first;
             }
@@ -137,7 +127,7 @@ public class Sorts {
             while (arr[indexL] < pivotVal) {
                 indexL++;
             }
-            while ((arr[indexR] > pivotVal) && (indexR > indexL)) {
+            while ((arr[indexR] >= pivotVal) && (indexR > indexL)) {
                 indexR--;
             }
             if (indexL < indexR) {
