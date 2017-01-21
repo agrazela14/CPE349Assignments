@@ -13,7 +13,7 @@ public class SortTest {
         System.out.println("The Random Numbers are");
         
         for (int i = 0; i < ARRLEN; i++) {
-            int rndNum = rnd.nextInt();
+            int rndNum = rnd.nextInt(ARRLEN);
             SelectionArr[i] = rndNum;
             MergeArr[i] = rndNum;
             QuickArr[i] = rndNum;

@@ -1,0 +1,36 @@
+N = 5000 T_ss = 56 T_ms = 19 T_qs = 9
+N = 5000 T_ss = 44 T_ms = 3 T_qs = 5
+N = 5000 T_ss = 23 T_ms = 3 T_qs = 4
+N = 5000 T_ss = 24 T_ms = 1 T_qs = 0
+N = 5000 T_ss = 23 T_ms = 1 T_qs = 0
+
+N = 10000 T_ss = 95 T_ms = 2 T_qs = 1
+N = 10000 T_ss = 95 T_ms = 2 T_qs = 1
+N = 10000 T_ss = 95 T_ms = 2 T_qs = 1
+N = 10000 T_ss = 95 T_ms = 2 T_qs = 1
+N = 10000 T_ss = 95 T_ms = 2 T_qs = 1
+
+N = 20000 T_ss = 389 T_ms = 8 T_qs = 2
+N = 20000 T_ss = 386 T_ms = 4 T_qs = 2
+N = 20000 T_ss = 386 T_ms = 4 T_qs = 2
+N = 20000 T_ss = 386 T_ms = 4 T_qs = 2
+N = 20000 T_ss = 386 T_ms = 4 T_qs = 2
+
+N = 40000 T_ss = 1550 T_ms = 11 T_qs = 5
+N = 40000 T_ss = 1550 T_ms = 9 T_qs = 5
+N = 40000 T_ss = 1558 T_ms = 8 T_qs = 5
+N = 40000 T_ss = 1558 T_ms = 10 T_qs = 5
+N = 40000 T_ss = 1550 T_ms = 8 T_qs = 5
+
+N = 80000 T_ss = 6289 T_ms = 20 T_qs = 11
+N = 80000 T_ss = 6387 T_ms = 20 T_qs = 10
+N = 80000 T_ss = 6241 T_ms = 20 T_qs = 10
+N = 80000 T_ss = 6282 T_ms = 18 T_qs = 10
+N = 80000 T_ss = 6229 T_ms = 22 T_qs = 10
+
+N = 160000 T_ss = 25037 T_ms = 40 T_qs = 23
+N = 160000 T_ss = 24913 T_ms = 40 T_qs = 22
+N = 160000 T_ss = 24887 T_ms = 39 T_qs = 22
+N = 160000 T_ss = 24886 T_ms = 40 T_qs = 22
+N = 160000 T_ss = 24999 T_ms = 42 T_qs = 23
+

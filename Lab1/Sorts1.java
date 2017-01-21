@@ -1,39 +1,48 @@
-public class Sorts {
-    public static void selectionSort (int[] arr, int N) {
-        int smallest, temp;
+public class Sorts1 {
+    public static int selectionSort (int[] arr, int N) {
+        int smallest, temp, count = 0;
         for (int i = 0; i < N; i++) {
             smallest = i;
             for (int j = i + 1; j < N; j++) {
+                count++;
                 if (arr[j] < arr[smallest]) {
-                    smallest = j;
+                smallest = j;
                 }
             }
             temp = arr[smallest];
             arr[smallest] = arr[i];
             arr[i] = temp; 
         }
+        return count;
     }
 
-    public static void mergeSort (int[] arr, int N) {
-        mergeSort(arr, 0, N - 1);
+    public static int mergeSort (int[] arr, int N) {
+        int count = 0;
+        count = mergeSort(arr, 0, N - 1);
+        return count;
     }
 
-    private static void mergeSort(int[] arr, int first, int last) {
+    private static int mergeSort(int[] arr, int first, int last) {
+        int count = 0;
+
         if (first < last) {
             int middle = (first + last) / 2;
-            mergeSort(arr, first, middle); 
-            mergeSort(arr, middle + 1, last); 
-            mergeSortedHalves(arr, first, middle, last);
+            count += mergeSort(arr, first, middle); 
+            count += mergeSort(arr, middle + 1, last); 
+            count += mergeSortedHalves(arr, first, middle, last);
         }
+        return count;
     }
 
-    private static void mergeSortedHalves(int[] arr, int first, int middle, int last) {
+    private static int mergeSortedHalves(int[] arr, int first, int middle, int last) {
         int[] temp = new int[last - first + 1];
         int index1 = first;
         int index2 = middle + 1;
         int index  = 0;
+        int count = 0;
          
         while ((index1 <= middle) && (index2 <= last)) {
+            count++;
             if (arr[index1] < arr[index2]) {
                 temp[index] = arr[index1];
                 index1++;
@@ -45,11 +54,13 @@ public class Sorts {
             index++;
         }
         while (index1 <= middle) {
+            count++;
             temp[index] = arr[index1];
             index++;
             index1++;
         }
         while (index2 <= last) {
+            count++;
             temp[index] = arr[index2];
             index++;
             index2++;
@@ -57,39 +68,50 @@ public class Sorts {
         for (int i = first; i <= last; i++) {
             arr[i] = temp[i - first];    
         } 
+        return count;
     }
 
-    public static void quickSort (int[] arr, int N) {
-        quickSort(arr, 0, N - 1);
+    public static int quickSort (int[] arr, int N) {
+        int count;
+
+        count = quickSort(arr, 0, N - 1);
+        return count;
     }
 
-    private static void quickSort (int[] arr, int first, int last) {
+    private static int quickSort (int[] arr, int first, int last) {
+        int count = 0;
         if (first < last) {
             setPivotToEnd(arr, first, last);
+            count += (last - first);
             int pivotIndex = splitList(arr, first, last);
-            quickSort(arr, pivotIndex + 1, last);
-            quickSort(arr, first, pivotIndex);
+            count += quickSort(arr, pivotIndex + 1, last);
+            count += quickSort(arr, first, pivotIndex);
         }
+        return count;
     }
 
-    private static void setPivotToEnd(int[] arr, int first, int last) {
+    private static int setPivotToEnd(int[] arr, int first, int last) {
         //int firstVal = arr[first];
         //int lastVal  = arr[last];
         //int lowestIndex = first;
         //int largestIndex = last;
         int temp;
+        int count = 0;
       
         int pivotIndex = (first + last) / 2;
         int pivot = arr[pivotIndex];
 
         //Determine pivot and it's index
+        count++;
         if (arr[first] < arr[last]) {
+            count++;
             if (arr[first] > pivot) {
                 //lowestIndex = pivotIndex;
                 //largestIndex = last;
                 pivot = arr[first];
                 pivotIndex = first;
             }
+            count++;
             if (arr[last] < pivot) {
                 //lowestIndex = first;
                 //largestIndex = pivotIndex;
@@ -100,12 +122,14 @@ public class Sorts {
         else {
             //lowestIndex = last;
             //largestIndex = first;
+            count++;
             if (arr[last] > pivot) {
                 //lowestIndex = pivotIndex;
                 //largestIndex = first;
                 pivot = arr[last];
                 pivotIndex = last;
             }
+            count++;
             if (arr[first] < pivot) {
                 //lowestIndex = last;
                 //largestIndex = pivotIndex;
@@ -119,11 +143,13 @@ public class Sorts {
         arr[pivotIndex] = arr[last];
         arr[last] = temp;
 
+        count++;
         if (arr[first] > arr[(first + last) / 2]) {
             temp = arr[first];
             arr[first] = arr[(first + last) / 2];
             arr[(first + last) / 2] = temp;
         }
+        return count;
     }
 
     private static int splitList(int[] arr, int first, int last) {

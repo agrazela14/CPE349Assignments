@@ -31,7 +31,7 @@ public class SortTimes {
         int rndint;
 
         for (int i = 0; i < N; i++) {
-            rndint = rnd.nextInt(N);
+            rndint = rnd.nextInt(N - 1);
             sel[i] = rndint;
             merge[i] = rndint;
             quick[i] = rndint;
@@ -76,7 +76,7 @@ public class SortTimes {
 
     private static void printify(int N, int i, long sel, long merge, long quick) {
         System.out.println("N = " + N + " T_ss = " + sel + " T_ms = " + merge + " T_qs = " + quick);
-        if (i == 5) {
+        if (i == 4) {
             System.out.println();
         } 
     }
