@@ -1,2 +1,2 @@
 targets :
-	javac Sorts.java SortTest.java
+	javac Sorts.java SortTimes.java
