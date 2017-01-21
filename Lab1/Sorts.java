@@ -67,6 +67,7 @@ public class Sorts {
         if (first < last) {
             setPivotToEnd(arr, first, last);
             int pivotIndex = splitList(arr, first, last);
+            System.out.println("QuickSorting");
             quickSort(arr, pivotIndex + 1, last);
             quickSort(arr, first, pivotIndex);
         }
@@ -136,15 +137,18 @@ public class Sorts {
         while (indexL < indexR) {
             while (arr[indexL] < pivotVal) {
                 indexL++;
+        System.out.println("Hello4");
             }
             while ((arr[indexR] > pivotVal) && (indexR > indexL)) {
                 indexR--;
+        System.out.println("Hello5");
             }
             if (indexL < indexR) {
                 temp = arr[indexL];
                 arr[indexL] = arr[indexR];
                 arr[indexR] = temp;
             }
+        System.out.println("Hello6");
         }
         temp = arr[indexL];
         arr[indexL] = pivotVal;
