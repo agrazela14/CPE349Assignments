@@ -1,3 +1,10 @@
+/*
+ * Alex Grazela and Kyle Gonsalves
+ * agrazela and kygonsal
+ * 1/20/2017
+ * Lab 1
+*/
+
 N = 100 C_ss = 4950 C_ms = 672 C_qs = 678
 
 N = 200 C_ss = 19900 C_ms = 1544 C_qs = 1604

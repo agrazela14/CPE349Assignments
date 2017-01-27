@@ -1,3 +1,10 @@
+/*
+ * Alex Grazela and Kyle Gonsalves
+ * agrazela and kygonsal
+ * 1/20/2017
+ * Lab 1
+*/
+
 import java.util.*;
 
 public class SortTimes {

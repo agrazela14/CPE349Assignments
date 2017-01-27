@@ -1,0 +1,2 @@
+targets :
+	javac MatrixWork.java 

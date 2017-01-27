@@ -1,3 +1,10 @@
+/*
+ * Alex Grazela and Kyle Gonsalves
+ * agrazela and kygonsal
+ * 1/20/2017
+ * Lab 1
+*/
+
 public class Sorts1 {
     public static int selectionSort (int[] arr, int N) {
         int smallest, temp, count = 0;
