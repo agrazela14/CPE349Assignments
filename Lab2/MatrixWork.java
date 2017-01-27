@@ -15,7 +15,6 @@ public class MatrixWork {
 
         rowsA = fileReader.nextInt();
         colsA = fileReader.nextInt();
-        System.out.println("r: " + rowsA + "c: " + colsA);
         a = new int[rowsA][colsA];
         for(int i = 0; i < rowsA; i++) {
             for(int j = 0; j < colsA; j++) {
@@ -47,8 +46,9 @@ public class MatrixWork {
         int c[][] = new int[a.length][b[0].length];        
 
         if(a[0].length != b.length) {
-            throw new IllegalArgumentException(
-             "a's number of columns doesn't match b's number of rows");
+             System.out.println(
+              "a's number of columns doesn't match b's number of rows");
+             System.exit(1);
         }
 
         for(int i = 0; i < c.length; i++) {
