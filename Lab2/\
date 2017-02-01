@@ -11,7 +11,7 @@ public class MatrixProduct {
         
         int[][]C = new int[A.length][A.length];
         
-        matrixProduct_DAC(A, B, 0, 0, 0, 0, A.length);
+        matrixProduct_DAC(A, B, C);
         return C;
     }
 
@@ -37,7 +37,7 @@ public class MatrixProduct {
         int[][] C = new int[n][n];
         int[][] C11, C12, C21, C22;
         if (n == 1) {
-            C[n][n] = A[startRowA][startColA] * B[startRowB][startColB];
+            C[n][n] = A[startRowA][startColA] * B[startRowB][startColB];    
         } 
         else {
             C11 = matrixAdd(matrixProduct_DAC(A, B, startRowA, startColA, 
@@ -91,7 +91,7 @@ public class MatrixProduct {
             throw new IllegalArgumentException("Both Matricies must be square matricies of the same size, with each side having a power of 2 length");
 
         }
-        return A;// Placeholder so it will compile
+
     }
 
     private static boolean matriciesInvalid(int[][]A, int[][]B) {
@@ -104,7 +104,7 @@ public class MatrixProduct {
             return true;
         }
 
-        while ( !((Arows % 2) == 1) ) {
+        while ( !(Arows % 2) ) {
             Arows /= 2;
         }
 

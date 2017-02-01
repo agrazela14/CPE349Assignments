@@ -1,2 +1,2 @@
 targets :
-	javac MatrixWork.java 
+	javac MatrixWork.java MatrixProduct.java 

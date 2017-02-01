@@ -30,7 +30,7 @@ public class MatrixWork {
             }
         }
 
-        c = MatrixProduct(a, b);
+        c = MatrixProduct.matrixProduct_DAC(a, b);
 
         System.out.println("Product Matrix:");
         for(int i = 0; i < c.length; i++) {
