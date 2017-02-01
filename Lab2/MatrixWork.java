@@ -32,7 +32,17 @@ public class MatrixWork {
 
         c = MatrixProduct.matrixProduct_DAC(a, b);
 
-        System.out.println("Product Matrix:");
+        System.out.println("Normal Recursive Product Matrix:");
+        for(int i = 0; i < c.length; i++) {
+            for(int j = 0; j < c[0].length; j++) {
+                System.out.print(c[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        c = MatrixProduct.matrixProduct_Strassen(a, b);
+
+        System.out.println("Strassen Recursive Product Matrix:");
         for(int i = 0; i < c.length; i++) {
             for(int j = 0; j < c[0].length; j++) {
                 System.out.print(c[i][j] + " ");

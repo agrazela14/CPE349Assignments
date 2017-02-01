@@ -41,8 +41,8 @@ public class MatrixProduct {
         int[][] C11, C12, C21, C22;
         if (n == 1) {
             C[n - 1][n - 1] = A[startRowA][startColA] * B[startRowB][startColB];
-            //System.out.println("Hit the Base Case, C[0][0] is " + C[n-1][n-1] + 
-             //" startRowA = " + startRowA + " startColB = " + startColB);
+            System.out.println("Hit the Base Case, C[0][0] is " + C[n-1][n-1] + 
+             " startRowA = " + startRowA + " startColB = " + startColB);
         } 
         else {
             C11 = matrixAdd(matrixProduct_DAC(A, B, startRowA, startColA, 
@@ -107,10 +107,11 @@ public class MatrixProduct {
 
         if (n == 1) {
             C[n - 1][n - 1] = A[startRowA][startColA] * B[startRowB][startColB];
-            //System.out.println("Hit the Base Case, C[0][0] is " + C[n-1][n-1] + 
-             //" startRowA = " + startRowA + " startColB = " + startColB);
+            System.out.println("Hit the Base Case, C[0][0] is " + C[n-1][n-1] + 
+             " startRowA = " + startRowA + " startColB = " + startColB);
         } 
         else {
+
             int[][]C11;
             int[][]C12;
             int[][]C21;
@@ -147,8 +148,8 @@ public class MatrixProduct {
             //C21 done
 
             C22 = matrixProduct_StrassenAdd(P5, P1, 0, 0, 0, 0, n/2);
-            C22 = matrixProduct_StrassenSubtract(C22, P3, 0, 0, 0, 0, n/2);
-            C22 = matrixProduct_StrassenSubtract(C22, P7, 0, 0, 0, 0, n/2);
+            C22 = matrixProduct_StrassenSubtract(C11, P3, 0, 0, 0, 0, n/2);
+            C22 = matrixProduct_StrassenSubtract(C11, P7, 0, 0, 0, 0, n/2);
             //C22 done
             
             for(int i = 0; i < n/2; i++) {
@@ -171,20 +172,20 @@ public class MatrixProduct {
                     C[i + n/2][j + n/2] = C22[i][j];
                 }
             }
+            return C;
         }
-        return C;
-    }
 
-    private static int[][] matrixProduct_StrassenAdd(int[][] A, int [][] B, 
-     int startRowA, int startColA, int startRowB, int startColB, int n) {
-        int[][] C = new int[n][n];
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < n; j++) {
-                C[i][j] = A[i + startRowA][j + startColA] + B[i + startRowB][j + startColB];
+        private static int[][] matrixProduct_StrassenAdd(int[][] A, int [][] B, 
+         int startRowA, int startColA, int startRowB, int startColB, int n) {
+            int[][] C = new int[n][n];
+            for(int i = 0; i < n; i++) {
+                for(int j = 0; j < n; j++) {
+                    C[i][j] = A[i + startRowA][j + startColA] + B[i + startRowB][j + startColB];
+                }
             }
-        }
-        return C;
+            return C;
     }        
+}
 
     private static int[][] matrixProduct_StrassenSubtract(int[][] A, int [][] B, 
      int startRowA, int startColA, int startRowB, int startColB, int n) {
