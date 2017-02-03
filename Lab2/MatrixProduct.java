@@ -11,19 +11,8 @@ public class MatrixProduct {
             throw new IllegalArgumentException(
              "Both Matricies must be square matricies of the same size, with each side having a power of 2 length");
         }
-        
-        //int[][]C = new int[A.length][A.length];
-        
         return matrixProduct_DAC(A, B, 0, 0, 0, 0, A.length);
-        //return C;
     }
-
-    /*
-    private static void matrixProduct_DAC(int[][]A, int[][]B, int[][]C, int n) {
-        C[n][
-        
-    } 
-    */
 
     private static int[][] matrixAdd(int[][] A, int[][] B) { 
         int[][] C = new int[A.length][A[0].length];
@@ -41,8 +30,6 @@ public class MatrixProduct {
         int[][] C11, C12, C21, C22;
         if (n == 1) {
             C[n - 1][n - 1] = A[startRowA][startColA] * B[startRowB][startColB];
-            //System.out.println("Hit the Base Case, C[0][0] is " + C[n-1][n-1] + 
-             //" startRowA = " + startRowA + " startColB = " + startColB);
         } 
         else {
             C11 = matrixAdd(matrixProduct_DAC(A, B, startRowA, startColA, 
@@ -93,11 +80,9 @@ public class MatrixProduct {
 
     public static int[][] matrixProduct_Strassen(int[][]A, int[][]B) {
         if (matriciesInvalid(A, B)) {
-            throw new IllegalArgumentException("Both Matricies must be square matricies of the same size, with each side having a power of 2 length");
-
+            throw new IllegalArgumentException(
+             "Both Matricies must be square matricies of the same size, with each side having a power of 2 length");
         }
-        //int C[][] = new int[A.length][A.length];
-
         return matrixProduct_Strassen(A, B, 0, 0, 0, 0, A.length);
     }
 
@@ -107,8 +92,6 @@ public class MatrixProduct {
 
         if (n == 1) {
             C[n - 1][n - 1] = A[startRowA][startColA] * B[startRowB][startColB];
-            //System.out.println("Hit the Base Case, C[0][0] is " + C[n-1][n-1] + 
-             //" startRowA = " + startRowA + " startColB = " + startColB);
         } 
         else {
             int[][]C11;
@@ -116,16 +99,35 @@ public class MatrixProduct {
             int[][]C21;
             int[][]C22;
 
-            int[][] S1 = matrixProduct_StrassenSubtract(B, B, startRowB, startColB + n/2, startRowB + n/2, startColB + n/2, n/2);    
-            int[][] S2 = matrixProduct_StrassenAdd(A, A, startRowA, startColA, startRowA, startColA + n/2, n/2);    
-            int[][] S3 = matrixProduct_StrassenAdd(A, A, startRowA + n/2, startColA, startRowA + n/2, startColA + n/2, n/2);    
-            int[][] S4 = matrixProduct_StrassenSubtract(B, B, startRowB + n/2, startColB, startRowB, startColB, n/2);    
-            int[][] S5 = matrixProduct_StrassenAdd(A, A, startRowA, startColA, startRowA + n/2, startColA + n/2, n/2);    
-            int[][] S6 = matrixProduct_StrassenAdd(B, B, startRowB, startColB, startRowB + n/2, startColB + n/2, n/2);    
-            int[][] S7 = matrixProduct_StrassenSubtract(A, A, startRowA, startColA + n/2, startRowA + n/2, startColA + n/2, n/2);    
-            int[][] S8 = matrixProduct_StrassenAdd(B, B, startRowB + n/2, startColB, startRowB + n/2, startColB + n/2, n/2);    
-            int[][] S9 = matrixProduct_StrassenSubtract(A, A, startRowA, startColA, startRowA + n/2, startColA, n/2);    
-            int[][] S10 = matrixProduct_StrassenAdd(B, B, startRowB, startColB, startRowB, startColB + n/2, n/2);    
+            int[][] S1 = matrixProduct_StrassenSubtract(B, B, 
+             startRowB, startColB + n/2, startRowB + n/2, startColB + n/2, n/2);
+
+            int[][] S2 = matrixProduct_StrassenAdd(A, A,
+             startRowA, startColA, startRowA, startColA + n/2, n/2);    
+
+            int[][] S3 = matrixProduct_StrassenAdd(A, A, 
+             startRowA + n/2, startColA, startRowA + n/2, startColA + n/2, n/2);    
+
+            int[][] S4 = matrixProduct_StrassenSubtract(B, B, 
+             startRowB + n/2, startColB, startRowB, startColB, n/2);    
+
+            int[][] S5 = matrixProduct_StrassenAdd(A, A, 
+             startRowA, startColA, startRowA + n/2, startColA + n/2, n/2);    
+
+            int[][] S6 = matrixProduct_StrassenAdd(B, B, 
+             startRowB, startColB, startRowB + n/2, startColB + n/2, n/2);    
+
+            int[][] S7 = matrixProduct_StrassenSubtract(A, A, 
+             startRowA, startColA + n/2, startRowA + n/2, startColA + n/2, n/2);    
+
+            int[][] S8 = matrixProduct_StrassenAdd(B, B, 
+             startRowB + n/2, startColB, startRowB + n/2, startColB + n/2, n/2);    
+
+            int[][] S9 = matrixProduct_StrassenSubtract(A, A, 
+             startRowA, startColA, startRowA + n/2, startColA, n/2);    
+            
+            int[][] S10 = matrixProduct_StrassenAdd(B, B, 
+             startRowB, startColB, startRowB, startColB + n/2, n/2);    
             
             int[][] P1 = matrixProduct_Strassen(A, S1, startRowA, startColA, 0, 0, n/2);
             int[][] P2 = matrixProduct_Strassen(S2, B, 0, 0, startRowB + n/2, startColB + n/2, n/2);
