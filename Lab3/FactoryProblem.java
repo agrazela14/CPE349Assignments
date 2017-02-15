@@ -72,16 +72,19 @@ public class FactoryProblem {
         int routeLine = (min[0][j] < min[1][j]) ? 0 : 1;
         int optimalTime = (min[0][j] < min[1][j]) ? min[0][j] : min[1][j];
         int[] LineNumbers = new int[j];
+        LineNumbers[0] = routeLine + 1;
+
         for (int i = j - 1; i > 0; i--) {
             if (route[routeLine][i] == 0) {
-                LineNumbers[j - (i + 1)] = 1;
+                LineNumbers[(i)] = 1;
                 routeLine = 0;
             }
             else {
-                LineNumbers[j - (i + 1)] = 2;
+                LineNumbers[(i)] = 2;
                 routeLine = 1;
             }
         }
+
         System.out.println("The optimal solution is " + optimalTime + "\n");
         System.out.println("The optimal route is:");
 
