@@ -76,9 +76,11 @@ public class GameProblem {
         int maxJ = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
+                /*
                 System.out.print("S["+ i + ", " + j + "] = " + S[i][j]);
                 System.out.print("    A["+ i + ", " + j + "] = " + A[i][j]);
                 System.out.println("    R["+ i + ", " + j + "] = " + R[i][j]);
+                */
                 if (max < S[i][j]) {
                     max = S[i][j];
                     maxI = i;
@@ -88,6 +90,26 @@ public class GameProblem {
         }
 
         System.out.println("Best score: " + max); 
+        /*
+        System.out.print("[" + (maxI + 1) + "," + (maxJ + 1) + "] ");
+        if (R[maxI][maxJ] == 'd') {
+            maxI++;
+        }
+        else {
+            maxJ++;
+        }
+        */
+
+        while (R[maxI][maxJ] != 'e') {
+            System.out.print("[" + (maxI + 1) + "," + (maxJ + 1) + "] to ");
+            if (R[maxI][maxJ] == 'd') {
+                maxI++;
+            }
+            else {
+                maxJ++;
+            }
+        }
+        System.out.println("[" + (maxI + 1) + "," + (maxJ + 1) + "] to exit");
     }
 
     private static int compare(int num1, int num2) {
