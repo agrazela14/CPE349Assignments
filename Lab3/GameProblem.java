@@ -1,4 +1,6 @@
 import java.io.*;
+import java.util.*;
+import java.lang.*;
 
 public class GameProblem {
     public static void main(String args[]) throws FileNotFoundException{
@@ -24,14 +26,16 @@ public class GameProblem {
 
     public static void game(int n, int m, int[][] A) {
         int S[][] = new int[n][m];
-        char R[][] = new int[n][m];
+        char R[][] = new char[n][m];
 
         for(int i = n-1; i >= 0; i--) {
             for(int j = m-1; j >= 0; j--) {
+                //The lower right most element
                 if(i == n-1 && j == m-1) {
                     S[i][j] = A[i][j];
                     R[i][j] = 'e';
                 }
+                //In the lowest row
                 else if(i == n-1) {
                     if(compare(0, S[i][j + 1]) > 0) {
                         S[i][j] = A[i][j];
@@ -42,6 +46,7 @@ public class GameProblem {
                         R[i][j] = 'r';
                     }
                 }
+                //In the rightmost column
                 else if(j == m-1) {
                     if(compare(0, S[i + 1][j]) > 0) {
                         S[i][j] = A[i][j];
@@ -52,19 +57,37 @@ public class GameProblem {
                         R[i][j] = 'd';
                     }
                 }
+                //A standard element with something below and to the right
                 else {
                     if(compare(S[i + 1][j],S[i][j + 1]) > 0) {
-
+                        S[i][j] = S[i + 1][j] + A[i][j];
+                        R[i][j] = 'r'; 
                     }
                     else {
-
+                        S[i][j] = S[i][j + 1] + A[i][j];
+                        R[i][j] = 'd'; 
                     }
                 }
             }
         } 
+        //Now we know all the S values, we need the largest and the route to it
+        int max = S[0][0];
+        int maxI = 0;
+        int maxJ = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (max < S[i][j]) {
+                    max = S[i][j];
+                    maxI = i;
+                    maxJ = j;
+                }
+            }
+        }
+
+        System.out.println("Best score: " + max); 
     }
 
-    private int compare(int num1, int num2) {
+    private static int compare(int num1, int num2) {
     
         if(num1 < num2) {
             return -1;

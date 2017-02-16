@@ -1,2 +1,2 @@
 targets :
-	javac FactoryProblem.java 
+	javac GameProblem.java 
