@@ -18,7 +18,7 @@ public class GameProblem {
         
         for(int i = 0; i < rows; i++) {
             for(int j = 0; j < cols; j++) {
-                grid[i][j] = in.nextInt();
+                grid[i][j] = fScan.nextInt();
             }
         }
         game(rows, cols, grid);
@@ -59,12 +59,12 @@ public class GameProblem {
                 }
                 //A standard element with something below and to the right
                 else {
-                    if(compare(S[i + 1][j],S[i][j + 1]) > 0) {
-                        S[i][j] = S[i + 1][j] + A[i][j];
+                    if(compare(S[i][j + 1],S[i + 1][j]) > 0) {
+                        S[i][j] = S[i][j + 1] + A[i][j];
                         R[i][j] = 'r'; 
                     }
                     else {
-                        S[i][j] = S[i][j + 1] + A[i][j];
+                        S[i][j] = S[i + 1][j] + A[i][j];
                         R[i][j] = 'd'; 
                     }
                 }
@@ -76,6 +76,9 @@ public class GameProblem {
         int maxJ = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
+                System.out.print("S["+ i + ", " + j + "] = " + S[i][j]);
+                System.out.print("    A["+ i + ", " + j + "] = " + A[i][j]);
+                System.out.println("    R["+ i + ", " + j + "] = " + R[i][j]);
                 if (max < S[i][j]) {
                     max = S[i][j];
                     maxI = i;
@@ -92,7 +95,7 @@ public class GameProblem {
         if(num1 < num2) {
             return -1;
         }
-        else if(num2 > num1) {
+        else if(num2 < num1) {
             return 1;
         }
         else {
