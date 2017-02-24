@@ -1,9 +1,23 @@
+import java.util.*;
+
 public class ChangeMaker {
     public static void main(String[] args) {
-        int[] input = {100, 25, 10, 5, 1};
-        int n = 233;
+        int[] input;
+        int n;
+        Scanner in = new Scanner(System.in);
         int optimalCoins = 0;
+        System.out.println("Enter the number of coin-denominations and the" + 
+                           " set of coin values:");
+        input = new int[in.nextInt()];
+        for (int i = 0; i < input.length; i++) {
+            input[i] = in.nextInt();
+        }
+        System.out.println("\nEnter a positive amount to be changed" + 
+                           "(enter 0 to quit):");
+        n = in.nextInt();
+
         int[] output = change_DP(n, input);
+        System.out.println("\nDP algorithm results");
         System.out.println("Amount: " + n);
         System.out.print("Optimal Distribution: ");
         for (int i = 0; i < output.length; i++) {
@@ -20,6 +34,7 @@ public class ChangeMaker {
 
         optimalCoins = 0;
         output = change_greedy(n, input);
+        System.out.println("\nGreedy algorithm results");
         System.out.println("Amount: " + n);
         System.out.print("Optimal Distribution: ");
         for (int i = 0; i < output.length; i++) {
