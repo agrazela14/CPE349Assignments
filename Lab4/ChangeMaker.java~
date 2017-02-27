@@ -18,7 +18,6 @@ public class ChangeMaker {
         n = in.nextInt();
 
         while (n != 0) {
-            optimalCoins = 0;
             int[] output = change_DP(n, input);
             System.out.println("\nDP algorithm results");
             System.out.println("Amount: " + n);
@@ -51,10 +50,10 @@ public class ChangeMaker {
             }
             System.out.println();
             System.out.println("Optimal coin count: " + optimalCoins);
-            System.out.println("\nEnter a positive amount to be changed" + 
-                                   "(enter 0 to quit):");
-            n = in.nextInt();
         }
+        System.out.println("\nEnter a positive amount to be changed" + 
+                               "(enter 0 to quit):");
+        n = in.nextInt();
     }
 
     public static int[] change_DP(int n, int[] d) {
