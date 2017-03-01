@@ -52,9 +52,10 @@ public class ChangeMaker {
             System.out.println();
             System.out.println("Optimal coin count: " + optimalCoins);
             System.out.println("\nEnter a positive amount to be changed" + 
-                                   "(enter 0 to quit):");
+                                   " (enter 0 to quit):");
             n = in.nextInt();
         }
+        System.out.println("Thanks for playing. Good Bye.");
     }
 
     public static int[] change_DP(int n, int[] d) {
