@@ -6,14 +6,17 @@ public class DiGraph {
 
     DiGraph(int n) {
         graph = new LinkedList[n];
+        for (int i = 0; i < n; i++) {
+            graph[i] = new LinkedList<Integer>();
+        }
     }
 
     public void addEdge(int from, int to) {
-        graph[from].add(to); 
+        graph[from - 1].add(to - 1); 
     }
 
     public void deleteEdge(int from, int to) {
-        graph[from].remove(to); 
+        graph[from - 1].removeFirstOccurrence(to - 1); 
     }
 
     public int edgeCount() {
@@ -31,9 +34,9 @@ public class DiGraph {
 
     public void print() {
         for (int i = 0; i < graph.length; i++) {
-            System.out.print(i + " is connected to: ");
+            System.out.print((i + 1) + " is connected to: ");
             for (int j = 0; j < graph[i].size(); j++) {
-                System.out.print(j);
+                System.out.print(graph[i].get(j) + 1);
                 if (j != graph[i].size() - 1) {
                     System.out.print(", ");
                 }
