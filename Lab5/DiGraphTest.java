@@ -81,6 +81,7 @@ public class DiGraphTest {
                                 System.out.print(", ");
                             }
                         }
+                        System.out.println();
                     }
                     catch (IllegalArgumentException e) {
                         System.err.println(e.getMessage());
