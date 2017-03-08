@@ -12,7 +12,9 @@ public class DiGraph {
     }
 
     public void addEdge(int from, int to) {
-        graph[from - 1].add(to - 1); 
+        if (!(graph[from - 1].contains(to - 1))) {
+            graph[from - 1].add(to - 1); 
+        }
     }
 
     public void deleteEdge(int from, int to) {
@@ -71,7 +73,7 @@ public class DiGraph {
             current = Q.remove();
             for (int i = 0; i < graph[current].size(); i++) {
                 indegreeArray[graph[current].get(i)]--;
-                if (indegreeArray[graph[current.get(i)]] == 0) {
+                if (indegreeArray[graph[current].get(i)] == 0) {
                     Q.add(graph[current].get(i));
                 }
             }
@@ -80,7 +82,7 @@ public class DiGraph {
         }
 
         if (sortedCount != graph.length) {
-            throw new IllegalOperationException("There is a cycle");
+            throw new IllegalArgumentException("There is a cycle");
         }
         return sorted;
     }

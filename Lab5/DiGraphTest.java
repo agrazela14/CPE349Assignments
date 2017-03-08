@@ -11,6 +11,7 @@ public class DiGraphTest {
 
         System.out.println("Enter a number of verticies");
         n = sc.nextInt();
+        str = sc.nextLine();
         graph = new DiGraph(n);
 
         System.out.println("Choose one of the following operations:");
@@ -21,9 +22,15 @@ public class DiGraphTest {
         System.out.println("-print graph (enter p)");
         System.out.println("-topological sort (enter t)");
         System.out.println("-Quit (enter q)");
+        
+        str = sc.nextLine();
 
-        cmd = (sc.next().charAt(0));
-        //cmd = str.charAt(0);
+        if (str.length() > 1) {
+            cmd = 'x'; //Invalid if the input was more than 1 character
+        }
+        else {
+            cmd = str.charAt(0);
+        }
 
         while (cmd != 'q') {
             switch (cmd) {
@@ -31,17 +38,20 @@ public class DiGraphTest {
                     System.out.println("Enter from what vertex to what vertex");
                     from = sc.nextInt();
                     to = sc.nextInt();
+                    sc.nextLine();
 
                     graph.addEdge(from, to);
-                    System.out.println("Done");
+                    System.out.println("(" + from + ", " + to + ") edge is now added to the graph");
                     break;
 
                 case 'd':
                     System.out.println("Enter from what vertex to what vertex");
                     from = sc.nextInt();
                     to = sc.nextInt();
+                    sc.nextLine();
 
                     graph.deleteEdge(from, to);
+                    System.out.println("(" + from + ", " + to + ") edge is now removed from the graph");
                     System.out.println("Done");
                     break;
 
@@ -72,7 +82,7 @@ public class DiGraphTest {
                             }
                         }
                     }
-                    catch (IllegalOperationException e) {
+                    catch (IllegalArgumentException e) {
                         System.err.println(e.getMessage());
                     }
                     break;
@@ -84,7 +94,19 @@ public class DiGraphTest {
                     System.out.println("That's an invalid command, please try again, lowercase only");
                     break;
             }
-            cmd = (sc.next().charAt(0));
+            /*
+            while (!(sc.hasNextLine())) {
+            }
+            */
+
+            str = sc.nextLine();
+            //cmd = (sc.next().charAt(0));
+            if (str.length() > 1) {
+                cmd = 'x'; //Invalid if the input was more than 1 character
+            }
+            else {
+                cmd = str.charAt(0);
+            }
         }
         System.out.println("Thanks for playing, goodbye!");
         sc.close();
