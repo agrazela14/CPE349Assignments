@@ -44,4 +44,44 @@ public class DiGraph {
             System.out.println();
         }
     }
+    
+    private int[] indegrees() {
+        int[] indegreeArray = new int[graph.length];
+        for (int i = 0; i < graph.length; i++) {
+            for (int j = 0; j < graph[i].size(); j++) {
+                indegreeArray[graph[i].get(j)]++;
+            }
+        }
+        return indegreeArray;
+    }
+
+    public int[] topSort() {
+        LinkedList<Integer> Q = new LinkedList<Integer>();
+        int[] indegreeArray = this.indegrees();
+        int[] sorted = new int[graph.length];
+        int current, sortedCount = 0;
+
+        for (int i = 0; i < indegreeArray.length; i++) {
+            if (indegreeArray[i] == 0) {
+                Q.add(i);
+            }
+        }
+        
+        while (Q.size() != 0) {
+            current = Q.remove();
+            for (int i = 0; i < graph[current].size(); i++) {
+                indegreeArray[graph[current].get(i)]--;
+                if (indegreeArray[graph[current.get(i)]] == 0) {
+                    Q.add(graph[current].get(i));
+                }
+            }
+            sorted[sortedCount] = current;
+            sortedCount++;
+        }
+
+        if (sortedCount != graph.length) {
+            throw new IllegalOperationException("There is a cycle");
+        }
+        return sorted;
+    }
 }

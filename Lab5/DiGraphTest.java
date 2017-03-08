@@ -16,9 +16,10 @@ public class DiGraphTest {
         System.out.println("Choose one of the following operations:");
         System.out.println("-add edge (enter a)");
         System.out.println("-delete edge (enter d)");
-        System.out.println("-edge edge (enter e)");
+        System.out.println("-edge count (enter e)");
         System.out.println("-vertex count (enter v)");
         System.out.println("-print graph (enter p)");
+        System.out.println("-topological sort (enter t)");
         System.out.println("-Quit (enter q)");
 
         cmd = (sc.next().charAt(0));
@@ -57,6 +58,23 @@ public class DiGraphTest {
                 case 'p':
                     System.out.println("The graph looks like this:");
                     graph.print();
+                    break;
+
+                case 't':
+                    int[] sorted;
+                    System.out.print("Topologically sorted vertices: ");
+                    try {
+                        sorted = graph.topSort();
+                        for(int i = 0; i < sorted.length; i++) {
+                            System.out.print(sorted[i] + 1);
+                            if (i != sorted.length - 1) {
+                                System.out.print(", ");
+                            }
+                        }
+                    }
+                    catch (IllegalOperationException e) {
+                        System.err.println(e.getMessage());
+                    }
                     break;
 
                 case 'q':
