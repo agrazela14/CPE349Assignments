@@ -2,6 +2,34 @@ import java.util.*;
 import java.lang.*;
 
 public class DiGraph {
+
+    private class VertexInfo {
+        private int dist;
+        private int parent;
+
+        public VertexInfo(int dist, int parent) {
+            this.dist = dist;
+            this.parent = parent;
+        }
+
+        public int getdist() {
+            return this.dist;
+        }
+
+        public void setdist(int dist) {
+            this.dist = dist;
+        }
+
+        public int getparent() {
+            return this.parent;
+        }
+
+        public void setparent(int par) {
+            this.parent = par;
+        }
+
+    }
+
     private LinkedList<Integer>[] graph;
 
     DiGraph(int n) {
@@ -11,6 +39,65 @@ public class DiGraph {
         }
     }
 
+    private VertexInfo[] BFS(int s) {
+        VertexInfo verts[] = new VertexInfo[graph.length];
+        int cur;
+        
+        for (int u = 0; u < graph.length; u++) {
+            verts[u] = new VertexInfo(-1, -1);
+        }
+        verts[s] = new VertexInfo(0, -1); 
+
+        LinkedList<Integer> q = new LinkedList<Integer>();
+        
+        q.add(s);
+
+        while(q.size() > 0) {
+            cur = q.removeFirst();
+            for (int node : graph[cur]) {
+                if (verts[node].getdist() == -1) {
+                    verts[node].setdist(verts[cur].getdist() + 1);
+                    verts[node].setparent(cur);
+                    q.add(node);
+                }
+            }
+        }
+        return verts;
+    }
+
+    public boolean isTherePath(int from, int to) {
+       VertexInfo[] verts = BFS(from);
+       return(verts[to].getdist() > 0);
+    }
+
+    public int lengthOfPath(int from, int to) {
+       VertexInfo[] verts = BFS(from);
+       return verts[to].getdist();
+    }
+
+    public void printPath(int from, int to) {
+       VertexInfo[] verts = BFS(from);
+       int arr[];
+       int cur = to;
+       if (verts[to].getdist() > 0) {
+          arr = new int[verts[to].getdist() + 1];
+          for (int i = 0; i < arr.length; i++) {
+              arr[i] = cur;
+              cur = verts[cur].getparent(); 
+          }
+          for (int i = arr.length - 1; i >= 0; i--) {
+              System.out.print(arr[i] + 1);
+              if (i != 0) {
+                  System.out.print(" -> ");
+              }
+          }
+          System.out.println();
+       }
+       else {
+           System.out.println("There is no path between " + from + " and " + to);
+       }
+    }
+    
     public void addEdge(int from, int to) {
         if (!(graph[from - 1].contains(to - 1))) {
             graph[from - 1].add(to - 1); 

@@ -21,6 +21,9 @@ public class DiGraphTest {
         System.out.println("-vertex count (enter v)");
         System.out.println("-print graph (enter p)");
         System.out.println("-topological sort (enter t)");
+        System.out.println("-is there a path (enter i)");
+        System.out.println("-length of path (enter l)");
+        System.out.println("-show path (enter s)");
         System.out.println("-Quit (enter q)");
         
         str = sc.nextLine();
@@ -86,6 +89,40 @@ public class DiGraphTest {
                     catch (IllegalArgumentException e) {
                         System.err.println(e.getMessage());
                     }
+                    break;
+
+                case 'i':
+                    System.out.println("Enter from what vertex to what vertex");
+                    from = sc.nextInt();
+                    to = sc.nextInt();
+                    sc.nextLine();
+
+                    if (graph.isTherePath(from - 1, to - 1)) {
+                        System.out.println("Yes, there is a path between " + from + " and " + to);
+                    }
+                    else {
+                        System.out.println("There is no path between " + from + " and " + to);
+                    }
+
+                    break;
+
+                case 'l':
+                    System.out.println("Enter from what vertex to what vertex");
+                    from = sc.nextInt();
+                    to = sc.nextInt();
+                    sc.nextLine();
+
+                    System.out.println("Length of path between " 
+                     + from + " and " + to + " is " + graph.lengthOfPath(from - 1, to - 1));
+                    break;
+
+                case 's':
+                    System.out.println("Enter from what vertex to what vertex");
+                    from = sc.nextInt();
+                    to = sc.nextInt();
+                    sc.nextLine();
+
+                    graph.printPath(from - 1, to - 1);
                     break;
 
                 case 'q':
