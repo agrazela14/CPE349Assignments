@@ -24,6 +24,7 @@ public class DiGraphTest {
         System.out.println("-is there a path (enter i)");
         System.out.println("-length of path (enter l)");
         System.out.println("-show path (enter s)");
+        System.out.println("-print breadth-first-tree (enter b)");
         System.out.println("-Quit (enter q)");
         
         str = sc.nextLine();
@@ -123,6 +124,14 @@ public class DiGraphTest {
                     sc.nextLine();
 
                     graph.printPath(from - 1, to - 1);
+                    break;
+
+                case 'b':
+                    System.out.println("Enter root vertex");
+                    from = sc.nextInt();
+                    sc.nextLine();
+                    graph.printTree(from - 1);
+
                     break;
 
                 case 'q':

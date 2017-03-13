@@ -3,6 +3,32 @@ import java.lang.*;
 
 public class DiGraph {
 
+    private class TreeNode {
+        private int vertNumber;
+        private LinkedList<TreeNode> children;
+
+        public TreeNode(int num) {
+            this.vertNumber = num;
+            this.children = new LinkedList<TreeNode>();
+        }
+
+        public void addChild(TreeNode child) {
+            this.children.add(child);
+        }
+
+        public LinkedList<TreeNode> getChildren() {
+            return this.children;
+        }
+
+        public void setvertNumber(int num) {
+            this.vertNumber = num;
+        }
+
+        public int getvertNumber() {
+            return this.vertNumber;
+        }
+    }
+
     private class VertexInfo {
         private int dist;
         private int parent;
@@ -12,19 +38,19 @@ public class DiGraph {
             this.parent = parent;
         }
 
-        public int getdist() {
+        public int getDist() {
             return this.dist;
         }
 
-        public void setdist(int dist) {
+        public void setDist(int dist) {
             this.dist = dist;
         }
 
-        public int getparent() {
+        public int getParent() {
             return this.parent;
         }
 
-        public void setparent(int par) {
+        public void setParent(int par) {
             this.parent = par;
         }
 
@@ -55,9 +81,9 @@ public class DiGraph {
         while(q.size() > 0) {
             cur = q.removeFirst();
             for (int node : graph[cur]) {
-                if (verts[node].getdist() == -1) {
-                    verts[node].setdist(verts[cur].getdist() + 1);
-                    verts[node].setparent(cur);
+                if (verts[node].getDist() == -1) {
+                    verts[node].setDist(verts[cur].getDist() + 1);
+                    verts[node].setParent(cur);
                     q.add(node);
                 }
             }
@@ -67,23 +93,23 @@ public class DiGraph {
 
     public boolean isTherePath(int from, int to) {
        VertexInfo[] verts = BFS(from);
-       return(verts[to].getdist() > 0);
+       return(verts[to].getDist() > 0);
     }
 
     public int lengthOfPath(int from, int to) {
        VertexInfo[] verts = BFS(from);
-       return verts[to].getdist();
+       return verts[to].getDist();
     }
 
     public void printPath(int from, int to) {
        VertexInfo[] verts = BFS(from);
        int arr[];
        int cur = to;
-       if (verts[to].getdist() > 0) {
-          arr = new int[verts[to].getdist() + 1];
+       if (verts[to].getDist() > 0) {
+          arr = new int[verts[to].getDist() + 1];
           for (int i = 0; i < arr.length; i++) {
               arr[i] = cur;
-              cur = verts[cur].getparent(); 
+              cur = verts[cur].getParent(); 
           }
           for (int i = arr.length - 1; i >= 0; i--) {
               System.out.print(arr[i] + 1);
@@ -172,5 +198,36 @@ public class DiGraph {
             throw new IllegalArgumentException("There is a cycle");
         }
         return sorted;
+    }
+
+    private TreeNode buildTree(int s) {
+        VertexInfo[] vertInf = BFS(s);
+
+        TreeNode[] nodes = new TreeNode[graph.length];
+
+        for (int i = 0; i < nodes.length; i++) {
+            nodes[i] = new TreeNode(i);
+        }
+
+        for (int i = 0; i < vertInf.length; i++) {
+            if (vertInf[i].getParent() >= 0) {
+                nodes[vertInf[i].getParent()].addChild(nodes[i]);
+            }
+        }
+
+        return nodes[s];
+    }
+
+    public void printTree(int s) {
+        TreeNode root = buildTree(s);
+        printTree(root, ""); 
+    }
+
+    private void printTree(TreeNode node, String indents) {
+        System.out.print(indents);
+        System.out.println(node.getvertNumber() + 1);
+        for (TreeNode child : node.getChildren()) {
+            printTree(child, indents + "    ");
+        }
     }
 }
